@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Home</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1000;
+            
+        }
+                
+        .navbar-brand img {
+            height: 40px;
+        }
+
+
+
+        .nav-link {
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+            z-index: 1;
+            margin-right: 30px;;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-link:hover {
+            color: black; 
+            font-weight: bolder;
+        }
+
+        .nav-link:hover::before {
+            left: 0;
+        }
+
+
+
+
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .slideshow-container {
+            height: calc(100vh - 56px); 
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide-content {
+            text-align: center;
+            max-width: 80%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .slide h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide p {
+            font-size: 1.5rem;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .prev-slide {
+            left: 20px;
+        }
+
+        .next-slide {
+            right: 20px;
+        }
+
+        .slide-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .indicator.active {
+            background-color: white;
+        }
+
+        .card {
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-img-top {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.card-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card:hover .card-content {
+  opacity: 1;
+}
+
+.card-content p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-content span {
+  font-size: 14px;
+}
+
+
+
+        button {
+            background-color: rgba(219, 199, 202, 0.438);
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        button:hover {
+            color: black; 
+            font-weight: bolder;
+        }
+
+        button:hover::before {
+            left: 0;
+        }
+
+
+
+
+        .btn {
+            background-color: rgba(255, 255, 255, 0.438);
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: black; 
+            font-weight: bolder;
+        }
+        
+        .btn:hover::before {
+            left: 0;
+        }
+
+
+        .partners-section {
+            padding: 60px 0;
+            background-color: rgba(255, 192, 203, 0.11);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .partners-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .partners-track {
+            display: flex;
+            align-items: center;
+            animation: scroll 25s linear infinite;
+            will-change: transform;
+        }
+
+        .partner-logo {
+            flex: 0 0 auto;
+            padding: 0 30px;
+        }
+
+        .partner-logo img {
+            height: 60px;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .partner-logo:hover img {
+            filter: grayscale(0);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .partners-container:hover .partners-track {
+            animation-play-state: paused;
+        }
+
+        .partners-container::before,
+        .partners-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .partners-container::before {
+            left: 0;
+            background: linear-gradient(90deg, #f8f9fa 0%, rgba(248, 249, 250, 0) 100%);
+        }
+
+        .partners-container::after {
+            right: 0;
+            background: linear-gradient(270deg, #f8f9fa 0%, rgba(248, 249, 250, 0) 100%);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .partner-logo {
+                padding: 0 20px;
+            }
+            
+            .partner-logo img {
+                height: 50px;
+                max-width: 100px;
+            }
+        }
+
+
+             /* flt btn */
+             .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(18, 140, 126, 0.4);
+        }
+
+        .whatsapp-float i {
+            margin-top: 4px;
+        }
+
+        .whatsapp-float .tooltip {
+            position: absolute;
+            right: 70px;
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+        }
+
+        .whatsapp-float .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            margin-top: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent transparent #333;
+        }
+
+        .whatsapp-float:hover .tooltip {
+            opacity: 1;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 40px 0 20px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: #3498db;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #3498db;
+            padding-left: 5px;
+        }
+        
+        .footer-col .contact-info {
+            color: #bdc3c7;
+        }
+        
+        .footer-col .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-col .contact-info i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            background-color: #1a252f;
+            padding: 15px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .footer-bottom p {
+            margin: 0;
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        .footer-bottom a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-col {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="logo.png" alt="Logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto fs-4">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="aboutus.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="slideshow-container">
+        <div class="slide active" style="background-image: url('https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
+            <div class="slide-content">
+                <h2>Italian Pasta</h2>
+                <p>Handmade pasta with authentic Italian sauce and fresh ingredients</p>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
+            <div class="slide-content">
+                <h2>Breakfast Special</h2>
+                <p>Start your day with our delicious pancakes and fresh fruits</p>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
+            <div class="slide-content">
+                <h2>Gourmet Burger</h2>
+                <p>Premium beef patty with artisan bread and special sauce</p>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
+            <div class="slide-content">
+                <h2>Fresh Sushi</h2>
+                <p>Authentic Japanese sushi made with the freshest ingredients</p>
+            </div>
+        </div>
+
+        <div class="slide-indicators" id="slideIndicators"></div>
+    </div>
+
+    <section class="py-5 mt-5" style="background-color: rgba(255, 192, 203, 0.233);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="about.jpg" alt=""  class="about-image" img-fluid style="width: 400px;">
+                </div>
+                <div class="col-md-6" style="margin: auto;">
+                    <h2 class="text-center">About Us</h2>
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                        sit amet nulla auctor, vestibulum magna sed, convallis ex. Cum sociis natoque
+                        penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur
+                        vel sapien nisl. Suspendisse potenti. In hac habitasse platea dictumst. Mauris
+                        ut ex quis lacus consectetur tincidunt. Vestibulum ante ipsum primis in faucibus
+                        orci luctus et ultrices posuere cubilia Curae; In hac habitasse platea dictumst.
+                        Mauris ut ex quis lacus consectetur tincidunt.</p>
+                        <button class="btn">Read More</button>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 mt-5" style="background-color: rgba(255, 255, 255, 0.281);">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-3" id="featuredProducts">
+                    <h4>Services</h4>
+                    <h3>Our unique and specialty concepts</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nulla facilisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore recusandae nesciunt obcaecati mollitia maxime, veniam corrupti saepe adipisci exercitationem laudantium totam ex repellendus vel in quia eaque quaerat sapiente molestias.</p>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <!-- Card 1 -->
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="card">
+                                <img src="product.png" class="card-img-top" alt="Italian Pasta">
+                                <div class="card-content">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda repellendus tempora voluptatibus, quisquam repellat </p>
+                                  </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="card">
+                                <img src="product.png" class="card-img-top" alt="Margherita Pizza">
+                                <div class="card-content">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda repellendus tempora voluptatibus, quisquam repellat </p>
+                                  </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 3 -->
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="card">
+                                <img src="product.png" class="card-img-top" alt="Margherita Pizza">
+                                <div class="card-content">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda repellendus tempora voluptatibus, quisquam repellat </p>
+                                  </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 4 -->
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="card">
+                                <img src="product.png" class="card-img-top" alt="Margherita Pizza">
+                                <div class="card-content">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda repellendus tempora voluptatibus, quisquam repellat </p>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 d-flex justify-content-end">
+                        <button type="button">View More</button>
+                      </div>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Trusted Partners</h2>
+                <p class="text-muted">We collaborate with industry leaders</p>
+            </div>
+            
+            <div class="partners-container">
+                <div class="partners-track">
+                    <img src="7cccff545e71c78aa1f26865c1c574ee-removebg-preview.png" alt="Partner 1" class="partner-logo">
+                    <img src="7cccff545e71c78aa1f26865c1c574ee-removebg-preview.png" alt="Partner 1" class="partner-logo">
+                    <img src="7cccff545e71c78aa1f26865c1c574ee-removebg-preview.png" alt="Partner 1" class="partner-logo">
+                    <img src="7cccff545e71c78aa1f26865c1c574ee-removebg-preview.png" alt="Partner 1" class="partner-logo">
+                    
+                    <img src="7cccff545e71c78aa1f26865c1c574ee-removebg-preview.png" alt="Partner 1" class="partner-logo">
+                    <img src="7cccff545e71c78aa1f26865c1c574ee-removebg-preview.png" alt="Partner 1" class="partner-logo">
+                    <img src="7cccff545e71c78aa1f26865c1c574ee-removebg-preview.png" alt="Partner 1" class="partner-logo">
+                    <img src="7cccff545e71c78aa1f26865c1c574ee-removebg-preview.png" alt="Partner 1" class="partner-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p style="color: #bdc3c7; line-height: 1.6;">
+                    We are a company dedicated to providing quality services and products to our customers since 2010.
+                </p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>                    
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">service</a></li>
+                    <li><a href="#">service</a></li>
+                    <li><a href="#">service</a></li>
+                    <li><a href="#">service</a></li>
+                    <li><a href="#">service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, City, Country</p>
+                    <p><i class="fas fa-phone-alt"></i> +1 234 567 890</p>
+                    <p><i class="fas fa-envelope"></i> info@example.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 5PM</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Your Company. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+   
+
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+        <span class="tooltip">Chat with us!</span>
+    </a>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const indicatorsContainer = document.getElementById('slideIndicators');
+
+        // Create indicators
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => showSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+
+        const indicators = document.querySelectorAll('.indicator');
+
+        // Auto-rotate slides every 5 seconds
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(ind => ind.classList.remove('active'));
+            
+            currentSlide = (index + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+
+            // Restart auto-rotation
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Pause on hover
+        const slideshow = document.querySelector('.slideshow-container');
+        slideshow.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        slideshow.addEventListener('mouseleave', () => {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+    });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
